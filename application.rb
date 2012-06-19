@@ -2,6 +2,8 @@ require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/sequel'
 require "sinatra/config_file"
+require 'tropo-webapi-ruby'
+require 'httparty'
 
 config_file 'config/config.yml'
 
