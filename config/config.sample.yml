@@ -1,0 +1,4 @@
+---
+ftp_host: 1.2.3.4
+ftp_user: username
+ftp_pass: password
