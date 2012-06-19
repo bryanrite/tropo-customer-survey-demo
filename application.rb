@@ -52,7 +52,8 @@ post '/ask_another_question.json' do
 
   v = Tropo::Generator.parse request.env["rack.input"].read
   survey = Survey[session[:survey_id]]
-  survey.questions[session[:question]-1].update(response: v[:result][:actions]["q#{session[:question]}".to_sym][:value])
+  response = v[:result][:actions]["q#{session[:question]}".to_sym][:value] rescue nil
+  survey.questions[session[:question]-1].update(response: response) unless response.nil?
 
   t = Tropo::Generator.new
   session[:question] += 1
