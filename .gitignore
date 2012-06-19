@@ -2,3 +2,4 @@
 /.bundle
 .DS_Store
 config/config.yml
+db/**
