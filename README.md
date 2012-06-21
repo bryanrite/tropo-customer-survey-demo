@@ -2,6 +2,14 @@
 
 A voice based customer survey application that calls a number, asks questions, and collects the responses via Tropo's WebAPI.
 
+## Overview
+
+This application utilizes Tropo to create a simple telephone survey application.  The application takes a phone number and an array of questions.  Using Tropo's WebAPI, we create an outbound call to the number provided.
+
+The questions are then asked in sequence to the user, utilizing Tropo's Text To Speech engine to render the question strings as voice prompts.  The user's responses are collected, either by DTMF (touch-tone phone), or by voice.
+
+The survey results are then available via a GET call to the application.
+
 ## Setup
 
 The application has two pieces:
