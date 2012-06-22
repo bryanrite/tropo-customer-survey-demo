@@ -45,7 +45,12 @@ post '/call_out.json' do
   t = Tropo::Generator.new
   t.call(to: "+#{survey.phone_number}")
   t.say(value: 'We are going to ask you some questions.  You can speak or type in your answers.  Press pound to continue to the next question.')
+
+  logger.info survey.questions.inspect
+
   question_json session[:question], t, survey
+
+
 end
 
 post '/ask_another_question.json' do
@@ -53,6 +58,9 @@ post '/ask_another_question.json' do
   # Get the previous questions response and save it.
   v = Tropo::Generator.parse request.env["rack.input"].read
   survey = Survey[session[:survey_id]]
+
+  logger.info survey.questions.inspect
+
   response = v[:result][:actions][:question][:value] rescue nil
   survey.questions[session[:question]-1].update(response: response) unless response.nil?
 
