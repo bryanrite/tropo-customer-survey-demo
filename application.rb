@@ -30,6 +30,7 @@ post '/' do
   survey = Survey.create(phone_number: phone)
   questions.each { |q| survey.add_question(value: q) }
 
+  logger.info "Starting a new survey with phone number: #{phone}"
   HTTParty.get "http://api.tropo.com/1.0/sessions?action=create&token=#{settings.tropo_app_token}&survey=#{survey.id}"
 
   json survey_id: survey.id
@@ -76,6 +77,7 @@ end
 private
 
   def question_json(question, tropo, survey)
+    logger.info "Asking question #{question} which is #{survey.questions[question-1].value}"
     tropo.ask name: "question",
           attempts: 2,
           say:  [
