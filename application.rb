@@ -5,8 +5,6 @@ require "sinatra/config_file"
 require 'tropo-webapi-ruby'
 require 'httparty'
 
-config_file 'config/config.yml'
-
 # Autoload Directories
 autoload = %w(lib models)
 autoload.each do |directory|
@@ -30,7 +28,7 @@ post '/' do
   survey = Survey.create(phone_number: phone)
   questions.each { |q| survey.add_question(value: q) }
 
-  HTTParty.get "http://api.tropo.com/1.0/sessions?action=create&token=#{settings.tropo_app_token}&survey=#{survey.id}"
+  HTTParty.get "http://api.tropo.com/1.0/sessions?action=create&token=#{ENV['TROPO_TOKEN']}&survey=#{survey.id}"
 
   json survey_id: survey.id
 end
