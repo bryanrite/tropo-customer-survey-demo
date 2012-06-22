@@ -1,4 +1,6 @@
 class Question < Sequel::Model
+  set_dataset dataset.order(:id)
+
   plugin :validation_helpers
   self.raise_on_typecast_failure = false
 
