@@ -44,7 +44,7 @@ post '/call_out.json' do
 
   t = Tropo::Generator.new
   t.call(to: "+#{survey.phone_number}")
-  t.say(value: 'We are going to ask you some questions.  You can speek or type in your answers.  Press pound to continue to the next question. ')
+  t.say(value: 'We are going to ask you some questions.  You can speak or type in your answers.  Press pound to continue to the next question.')
   question_json session[:question], t, survey
 end
 
@@ -53,7 +53,7 @@ post '/ask_another_question.json' do
   # Get the previous questions response and save it.
   v = Tropo::Generator.parse request.env["rack.input"].read
   survey = Survey[session[:survey_id]]
-  response = v[:result][:actions]["q#{session[:question]}".to_sym][:value] rescue nil
+  response = v[:result][:actions][:question][:value] rescue nil
   survey.questions[session[:question]-1].update(response: response) unless response.nil?
 
   # Ask the next question.
@@ -76,7 +76,7 @@ end
 private
 
   def question_json(question, tropo, survey)
-    tropo.ask name: "q#{question}",
+    tropo.ask name: "question",
           attempts: 2,
           say:  [
                   { value: "Number #{question}: #{survey.questions[question-1].value}" },
