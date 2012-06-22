@@ -80,9 +80,9 @@ private
     tropo.ask name: "question",
           attempts: 2,
           say:  [
-                  { value: "Number #{question}: #{survey.questions[question-1].value}" },
                   { value: "Sorry. I didn't get that.", event: 'timeout' },
                   { value: "Sorry. That wasn't a valid answer.", event: 'nomatch:1 nomatch:2' }
+                  { value: "Number #{question}: #{survey.questions[question-1].value}" },
                 ],
           choices: { value: "[1-20 DIGITS]"}
     tropo.on event: 'continue', next: "/ask_another_question.json"
