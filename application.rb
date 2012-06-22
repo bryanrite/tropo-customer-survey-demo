@@ -61,7 +61,6 @@ post '/ask_another_question.json' do
   session[:question] += 1
 
   if survey.questions[session[:question]-1].nil?
-    puts survey.inspect
     t.say(value: "Thank you for completing our survey.")
     t.hangup
   else
