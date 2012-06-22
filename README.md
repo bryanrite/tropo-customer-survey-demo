@@ -18,19 +18,21 @@ The application has two pieces:
 
 Run `bundle install` to get all the dependencies.
 
-Copy `config/config.sample.yml` to `config/config.yml`.
+Copy `config/config.sample.yml` to `config/config.yml`. You will get your Tropo token in a minute.
 
 You should be able to start the Sinatra app now by running `ruby application.rb`
 
-Going to `http://localhost:4567` should display a welcome message and tell you that you have completed 0 surveys with 0 responses.
+Going to `http://localhost:4567` should display a welcome message and tell you that you have completed 0 surveys with 0 responses. It will not run yet as you still need a valid Tropo token first.
 
-Make sure that this application is available to the internet as your Tropo application will need to send data to it.  Make note of its URL.
+Make sure that this application is available to the internet and not firewalled as your Tropo application will need to send data to it.  Make note of its URL.
 
 ### Tropo App
 
-A basic WebAPI tropo application has to be created.  Log into Tropo, create a WebAPI application, and set the callback URL to your Sinatra application: `http://your-sinatra-app.com/call_out.json`
+A WebAPI Tropo application has to be created.  Log into Tropo, create a WebAPI application, and set the callback URL to your Sinatra application: `http://your-sinatra-app.com/call_out.json`
 
-Your newly created Tropo Application will have an associated Outbound Token, listed under the applications phone numbers.  Copy and paste this outbound token to the Sinatra applications config file.
+Your newly created Tropo Application will have an associated **Outbound Token**, listed underneath the application's phone numbers.  Copy and paste this outbound token to the Sinatra application's config file.
+
+_Note: The token you see on your application page is not the entire token.  Make sure you click the token and copy and paste the entire token from the modal that will pop up._
 
 ## Usage
 
